@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 کلاس آنلاین حرفه‌ای</title>
+    <style>
+        :root {
+            --primary: #ff6b6b;
+            --primary-dark: #ee5a24;
+            --bg-dark: #0f0c29;
+            --bg-mid: #302b63;
+            --bg-light: #24243e;
+            --glass: rgba(255,255,255,0.08);
+            --success: #2ed573;
+            --warning: #ffa502;
+            --danger: #ff4757;
+            --info: #1e90ff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Tahoma', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark), var(--bg-mid), var(--bg-light));
+            background-size: 400% 400%;
+            animation: bgMove 15s ease infinite;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        @keyframes bgMove {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 5px var(--primary); }
+            50% { box-shadow: 0 0 25px var(--primary), 0 0 50px var(--primary); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        @keyframes handWave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg); }
+            75% { transform: rotate(15deg); }
+        }
+
+        /* صفحه ورود */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            animation: fadeIn 0.8s ease;
+        }
+        .login-box {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            border-radius: 24px;
+            padding: 45px;
+            width: 440px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.1);
+            animation: fadeInUp 0.6s ease;
+        }
+        .login-box h1 { 
+            text-align: center; 
+            margin-bottom: 6px; 
+            color: var(--primary);
+            font-size: 32px;
+            animation: fadeInDown 0.6s ease 0.2s both;
+        }
+        .login-box .subtitle { 
+            text-align: center; 
+            margin-bottom: 30px; 
+            color: #aaa;
+            animation: fadeInDown 0.6s ease 0.3s both;
+        }
+        .tab-buttons { 
+            display: flex; 
+            gap: 10px; 
+            margin-bottom: 25px;
+            animation: fadeInDown 0.6s ease 0.4s both;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active { 
+            background: var(--primary);
+            animation: pulse 2s ease infinite;
+        }
+        .tab-btn:hover { 
+            background: rgba(255,107,107,0.5);
+            transform: translateY(-2px);
+        }
+        .input-group { 
+            margin-bottom: 18px;
+            animation: fadeInUp 0.6s ease 0.5s both;
+        }
+        .input-group label { 
+            display: block; 
+            margin-bottom: 8px; 
+            color: #aaa;
+            transition: color 0.3s;
+        }
+        .input-group:focus-within label { color: var(--primary); }
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.06);
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .input-group input:focus {
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 0 20px rgba(255,107,107,0.2);
+        }
+        .btn-primary {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, var(--primary), var(--primary-dark));
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            animation: fadeInUp 0.6s ease 0.6s both;
+        }
+        .btn-primary:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 15px 40px rgba(255,107,107,0.5);
+        }
+        .room-code-display {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            margin: 15px 0;
+            display: none;
+            animation: fadeInUp 0.5s ease;
+            border: 2px dashed rgba(255,107,107,0.4);
+        }
+
+        /* هدر کلاس */
+        .classroom { 
+            display: none; 
+            height: 100vh; 
+            flex-direction: column;
+            animation: fadeIn 0.5s ease;
+        }
+        .header {
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(20px);
+            padding: 10px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 60px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            animation: fadeInDown 0.5s ease;
+            z-index: 100;
+        }
+        .header h2 { color: var(--primary); font-size: 22px; }
+        .header .room-info { display: flex; gap: 20px; align-items: center; font-size: 14px; }
+        .header .room-info strong { color: var(--primary); }
+        .header-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+        .btn {
+            padding: 9px 18px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: white;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .btn-danger { background: var(--danger); }
+        .btn-success { background: var(--success); }
+        .btn-warning { background: var(--warning); }
+        .btn-info { background: var(--info); }
+        .btn-purple { background: #a855f7; }
+        .btn.active-glow { animation: glowPulse 2s ease infinite; }
+
+        /* محتوای اصلی */
+        .main-content { display: flex; flex: 1; overflow: hidden; }
+
+        /* پنل ویدیو */
+        .video-panel {
+            width: 320px;
+            min-width: 280px;
+            background: rgba(0,0,0,0.25);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-left: 1px solid rgba(255,255,255,0.1);
+            animation: slideInLeft 0.5s ease 0.2s both;
+        }
+        .video-container {
+            position: relative;
+            background: #1a1a2e;
+            border-radius: 14px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            border: 2px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.5s ease;
+        }
+        .video-container:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(255,107,107,0.2);
+            transform: scale(1.02);
+        }
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .video-container.screen-share {
+            aspect-ratio: 16/9;
+            border: 3px solid var(--primary);
+            animation: glowPulse 3s ease infinite;
+        }
+        .video-label {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0,0,0,0.8);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+        }
+        .video-controls {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            display: flex;
+            gap: 5px;
+            z-index: 10;
+        }
+        .video-control-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        .video-control-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
+        .video-control-btn.off { background: var(--danger); }
+        .no-video {
+            text-align: center;
+            color: #aaa;
+            padding: 30px;
+            font-size: 14px;
+        }
+
+        /* تخته سفید */
+        .center-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            animation: fadeIn 0.5s ease 0.1s both;
+        }
+        .whiteboard-area {
+            flex: 1;
+            background: white;
+            margin: 12px;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255,255,255,0.1);
+        }
+        .whiteboard-area canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: crosshair;
+        }
+        .toolbar {
+            display: flex;
+            gap: 10px;
+            padding: 12px 18px;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(15px);
+            border-radius: 14px;
+            margin: 0 12px 12px 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.5s ease 0.3s both;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .tool-btn {
+            padding: 9px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        .tool-btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+        .tool-btn.active { background: var(--primary); border-color: var(--primary); animation: pulse 2s ease infinite; }
+        .toolbar input[type="color"] { 
+            width: 35px; height: 35px; 
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 10px; cursor: pointer; 
+            background: transparent;
+            transition: all 0.3s;
+        }
+        .toolbar input[type="color"]:hover { border-color: var(--primary); transform: scale(1.1); }
+        .toolbar input[type="range"] { width: 80px; cursor: pointer; accent-color: var(--primary); }
+
+        /* چت */
+        .chat-panel {
+            width: 300px;
+            min-width: 260px;
+            background: rgba(0,0,0,0.25);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid rgba(255,255,255,0.1);
+            animation: slideInRight 0.5s ease 0.2s both;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px;
+        }
+        .chat-message { 
+            margin-bottom: 8px; 
+            padding: 10px 14px; 
+            border-radius: 14px; 
+            background: rgba(255,255,255,0.06);
+            font-size: 13px;
+            animation: fadeInUp 0.3s ease;
+            transition: all 0.3s;
+        }
+        .chat-message:hover { background: rgba(255,255,255,0.1); }
+        .chat-message .sender { color: var(--primary); font-weight: bold; font-size: 12px; }
+        .chat-message .role-badge { 
+            font-size: 10px; 
+            background: rgba(255,107,107,0.3);
+            padding: 2px 8px; 
+            border-radius: 10px; 
+            margin-right: 5px; 
+        }
+        .chat-message.system-message {
+            text-align: center;
+            color: #aaa;
+            font-size: 11px;
+            background: transparent;
+        }
+        .chat-input-area { 
+            display: flex; 
+            padding: 10px; 
+            gap: 8px; 
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .chat-input-area input {
+            flex: 1;
+            padding: 11px 16px;
+            border-radius: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.08);
+            color: white;
+            outline: none;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        .chat-input-area input:focus {
+            border-color: var(--primary);
+            background: rgba(255,255,255,0.12);
+            box-shadow: 0 0 15px rgba(255,107,107,0.2);
+        }
+        .send-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: none;
+            background: var(--primary);
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .send-btn:hover { background: var(--primary-dark); transform: scale(1.1); }
+
+        /* لیست کاربران */
+        .users-list {
+            padding: 12px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .users-list .users-title {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #aaa;
+        }
+        .user-item {
+            padding: 8px 12px;
+            margin: 4px 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            transition: all 0.3s;
+            animation: fadeInUp 0.3s ease;
+        }
+        .user-item:hover { background: rgba(255,255,255,0.06); }
+        .user-item .user-info { display: flex; align-items: center; gap: 8px; }
+        .user-item .hand-icon { font-size: 18px; animation: handWave 0.5s ease infinite; color: var(--warning); }
+        .user-item .muted-icon { color: var(--danger); font-size: 14px; }
+        .user-buttons { display: flex; gap: 4px; }
+        .mini-btn {
+            padding: 4px 10px;
+            border-radius: 15px;
+            border: none;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            font-weight: bold;
+        }
+        .mini-btn:hover { transform: scale(1.05); }
+        .mini-btn-allow { background: var(--success); }
+        .mini-btn-mute { background: var(--warning); }
+        .mini-btn-kick { background: var(--danger); }
+
+        /* اعلان */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 50%;
+            transform: translateX(50%);
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 14px 24px;
+            border-radius: 30px;
+            z-index: 1000;
+            animation: fadeInDown 0.5s ease;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            color: white;
+        }
+        .notification.fade-out {
+            animation: fadeInDown 0.5s ease reverse;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        /* اسکرول */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.25); }
+
+        /* ریسپانسیو */
+        @media (max-width: 1000px) {
+            .main-content { flex-direction: column; }
+            .video-panel {
+                width: 100%;
+                min-width: auto;
+                flex-direction: row;
+                overflow-x: auto;
+                border-left: none;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                max-height: 180px;
+                padding: 10px;
+            }
+            .video-container { min-width: 160px; max-width: 220px; aspect-ratio: 4/3; }
+            .chat-panel {
+                width: 100%;
+                min-width: auto;
+                max-height: 280px;
+                border-right: none;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+            .login-box { width: 90%; padding: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============ صفحه ورود ============ -->
+<div id="loginPage" class="login-container">
+    <div class="login-box">
+        <h1>🎓 کلاس آنلاین</h1>
+        <p class="subtitle">پلتفرم آموزش تعاملی حرفه‌ای</p>
+        
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="switchTab('create')">🏗️ ایجاد کلاس</button>
+            <button class="tab-btn" onclick="switchTab('join')">🚪 ورود به کلاس</button>
+        </div>
+        
+        <div id="createForm">
+            <div class="input-group">
+                <label>👤 نام شما (معلم)</label>
+                <input type="text" id="teacherName" placeholder="نام خود را وارد کنید" autocomplete="off">
+            </div>
+            <button class="btn-primary" onclick="createRoom()">🏗️ ساخت کلاس جدید</button>
+            <div class="room-code-display" id="roomCodeDisplay">
+                <p style="margin-bottom:8px;font-size:14px;">🔑 کد کلاس:</p>
+                <strong id="generatedCode" style="font-size:30px;color:var(--primary);letter-spacing:6px;"></strong>
+                <p style="margin-top:8px;color:#aaa;font-size:13px;">این کد را با دانشجویان به اشتراک بگذارید</p>
+                <button class="btn-primary" style="margin-top:12px;" onclick="enterClassroom()">🎯 ورود به کلاس</button>
+            </div>
+        </div>
+        
+        <div id="joinForm" style="display:none;">
+            <div class="input-group">
+                <label>👤 نام شما</label>
+                <input type="text" id="studentName" placeholder="نام خود را وارد کنید" autocomplete="off">
+            </div>
+            <div class="input-group">
+                <label>🔑 کد کلاس</label>
+                <input type="text" id="roomCodeInput" placeholder="کد ۸ رقمی را وارد کنید" autocomplete="off">
+            </div>
+            <button class="btn-primary" onclick="joinRoom()">🚪 ورود به کلاس</button>
+        </div>
+    </div>
+</div>
+
+<!-- ============ صفحه کلاس ============ -->
+<div id="classroomPage" class="classroom">
+    <div class="header">
+        <h2>🎓 کلاس آنلاین</h2>
+        <div class="room-info">
+            <span>🏠 <strong id="currentRoomCode">---</strong></span>
+            <span>👤 <strong id="currentUserName">---</strong> <span id="currentUserRole" style="font-size:12px;color:#aaa;"></span></span>
+        </div>
+        <div class="header-buttons">
+            <button class="btn btn-purple" onclick="raiseHand()" id="raiseHandBtn" style="display:none;">✋ بالا بردن دست</button>
+            <button class="btn btn-warning" onclick="toggleScreenShare()" id="screenShareBtn">📺 اشتراک صفحه</button>
+            <button class="btn btn-info" onclick="muteAllStudents()" id="muteAllBtn" style="display:none;">🔇 قطع صدای همه</button>
+            <button class="btn btn-danger" onclick="leaveClassroom()">🚪 خروج</button>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <!-- پنل ویدیو -->
+        <div class="video-panel" id="videoPanel">
+            <div class="no-video" id="noVideoMessage">
+                <p>📹</p><p>در انتظار اتصال ویدیو...</p>
+            </div>
+        </div>
+        
+        <!-- تخته سفید -->
+        <div class="center-panel">
+            <div class="whiteboard-area" id="whiteboardArea">
+                <canvas id="whiteboardCanvas"></canvas>
+            </div>
+            <div class="toolbar" id="toolbar">
+                <button class="tool-btn active" onclick="setTool('pen')" id="penTool">✏️ قلم</button>
+                <button class="tool-btn" onclick="setTool('eraser')" id="eraserTool">🧹 پاک‌کن</button>
+                <input type="color" id="colorPicker" value="#ff0000" title="رنگ قلم">
+                <input type="range" id="sizeSlider" min="1" max="20" value="3" title="اندازه قلم">
+                <span style="color:rgba(255,255,255,0.3);">|</span>
+                <button class="tool-btn" style="border-color:var(--danger);" onclick="clearWhiteboard()">🗑️ پاک کردن تخته</button>
+                <span style="color:#aaa;font-size:11px;margin-right:auto;">(فقط معلم می‌تواند روی تخته بنویسد)</span>
+            </div>
+        </div>
+        
+        <!-- چت و کاربران -->
+        <div class="chat-panel">
+            <div class="chat-messages" id="chatMessages"></div>
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="پیام خود را بنویسید..." onkeypress="if(event.key==='Enter') sendChat()">
+                <button class="send-btn" onclick="sendChat()">📩</button>
+            </div>
+            <div class="users-list" id="usersList">
+                <strong class="users-title">👥 کاربران آنلاین:</strong>
+                <div id="usersContainer">
+                    <div style="color:#aaa;font-size:12px;text-align:center;">در حال بارگذاری...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notification Container -->
+<div id="notificationContainer"></div>
+
+<script>
+    // ============ متغیرهای سراسری ============
+    let ws = null;
+    let localStream = null;
+    let screenStream = null;
+    let peerConnections = {};
+    let screenPeerConnections = {};
+    let currentRoom = null;
+    let currentUser = null;
+    let currentRole = null;
+    let isDrawing = false;
+    let currentTool = 'pen';
+    let canvas, ctx;
+    let reconnectTimeout = null;
+    let isMuted = false;
+    let isVideoOff = false;
+    let handRaised = false;
+    
+    // ============ Notification ============
+    function showNotification(message, type = 'info', duration = 3000) {
+        const container = document.getElementById('notificationContainer');
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        const icons = { info: 'ℹ️', success: '✅', warning: '⚠️', error: '❌' };
+        const colors = { info: 'var(--info)', success: 'var(--success)', warning: 'var(--warning)', error: 'var(--danger)' };
+        notification.style.borderColor = colors[type] || colors.info;
+        notification.innerHTML = `${icons[type] || icons.info} ${message}`;
+        container.appendChild(notification);
+        setTimeout(() => {
+            notification.classList.add('fade-out');
+            setTimeout(() => notification.remove(), 500);
+        }, duration);
+    }
+    
+    // ============ Canvas ============
+    function initCanvas() {
+        canvas = document.getElementById('whiteboardCanvas');
+        const container = document.getElementById('whiteboardArea');
+        
+        function resizeCanvas() {
+            const rect = container.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            if (ctx) {
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+            }
+        }
+        
+        resizeCanvas();
+        ctx = canvas.getContext('2d');
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        
+        canvas.addEventListener('mousedown', startDraw);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDraw);
+        canvas.addEventListener('mouseout', stopDraw);
+        canvas.addEventListener('mouseleave', stopDraw);
+        
+        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); startDraw(e); }, {passive: false});
+        canvas.addEventListener('touchmove', (e) => { e.preventDefault(); draw(e); }, {passive: false});
+        canvas.addEventListener('touchend', (e) => { e.preventDefault(); stopDraw(); }, {passive: false});
+        
+        window.addEventListener('resize', () => {
+            resizeCanvas();
+            if (window._whiteboardHistory) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                window._whiteboardHistory.forEach(d => applyRemoteDraw(d));
+            }
+        });
+    }
+    
+    function getMousePos(e) {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return {
+            x: (clientX - rect.left) * scaleX,
+            y: (clientY - rect.top) * scaleY
+        };
+    }
+    
+    function startDraw(e) {
+        if (currentRole !== 'teacher') {
+            showNotification('فقط معلم می‌تواند روی تخته بنویسد!', 'warning');
+            return;
+        }
+        e.preventDefault();
+        isDrawing = true;
+        const pos = getMousePos(e);
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
+        
+        if (currentTool === 'pen') {
+            ctx.strokeStyle = document.getElementById('colorPicker').value;
+            ctx.lineWidth = parseInt(document.getElementById('sizeSlider').value);
+        } else {
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 25;
+        }
+        sendWhiteboardDraw('start', pos.x, pos.y);
+    }
+    
+    function draw(e) {
+        if (!isDrawing || currentRole !== 'teacher') return;
+        e.preventDefault();
+        const pos = getMousePos(e);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.stroke();
+        sendWhiteboardDraw('draw', pos.x, pos.y);
+    }
+    
+    function stopDraw() {
+        if (!isDrawing) return;
+        isDrawing = false;
+        ctx.closePath();
+        sendWhiteboardDraw('end', null, null);
+    }
+    
+    function setTool(tool) {
+        currentTool = tool;
+        document.getElementById('penTool').classList.toggle('active', tool === 'pen');
+        document.getElementById('eraserTool').classList.toggle('active', tool === 'eraser');
+    }
+    
+    function clearWhiteboard() {
+        if (currentRole !== 'teacher') {
+            showNotification('فقط معلم می‌تواند تخته را پاک کند!', 'warning');
+            return;
+        }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (ws && ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({type: 'whiteboard_clear'}));
+        }
+    }
+    
+    function sendWhiteboardDraw(action, x, y) {
+        if (!ws || ws.readyState !== WebSocket.OPEN) return;
+        ws.send(JSON.stringify({
+            type: 'whiteboard_draw',
+            action: action,
+            x: Math.round(x),
+            y: Math.round(y),
+            color: currentTool === 'pen' ? document.getElementById('colorPicker').value : '#ffffff',
+            size: currentTool === 'pen' ? parseInt(document.getElementById('sizeSlider').value) : 25,
+            tool: currentTool
+        }));
+    }
+    
+    function applyRemoteDraw(data) {
+        if (!ctx) return;
+        if (data.action === 'start') {
+            ctx.beginPath();
+            ctx.moveTo(data.x, data.y);
+            ctx.strokeStyle = data.color;
+            ctx.lineWidth = data.size;
+        } else if (data.action === 'draw') {
+            ctx.lineTo(data.x, data.y);
+            ctx.stroke();
+        } else if (data.action === 'end') {
+            ctx.closePath();
+        }
+    }
+    
+    // ============ دوربین و میکروفن ============
+    async function startLocalVideo() {
+        try {
+            localStream = await navigator.mediaDevices.getUserMedia({
+                video: { width: { ideal: 320 }, height: { ideal: 240 }, frameRate: { ideal: 15 } },
+                audio: true
+            });
+            addVideoElement(currentUser, localStream, true);
+            document.getElementById('noVideoMessage').style.display = 'none';
+            
+            // دانشجو پیش‌فرض mute
+            if (currentRole === 'student') {
+                const audioTrack = localStream.getAudioTracks()[0];
+                if (audioTrack) {
+                    audioTrack.enabled = false;
+                    isMuted = true;
+                }
+            }
+        } catch (err) {
+            console.log('⚠️ دوربین:', err.message);
+            document.getElementById('noVideoMessage').innerHTML = '<p>⚠️</p><p>دوربین در دسترس نیست</p>';
+        }
+    }
+    
+    function toggleWebcam() {
+        if (localStream) {
+            const videoTrack = localStream.getVideoTracks()[0];
+            if (videoTrack) {
+                isVideoOff = !isVideoOff;
+                videoTrack.enabled = !isVideoOff;
+                
+                // تغییر ظاهر دکمه
+                const btn = document.querySelector('.video-control-btn[title="دوربین"]');
+                if (btn) {
+                    if (isVideoOff) {
+                        btn.classList.add('off');
+                        btn.textContent = '📷';
+                    } else {
+                        btn.classList.remove('off');
+                        btn.textContent = '📹';
+                    }
+                }
+                showNotification(isVideoOff ? '📷 دوربین خاموش شد' : '📹 دوربین روشن شد', 'info');
+            }
+        }
+    }
+    
+    function toggleMic() {
+        if (currentRole === 'student') {
+            showNotification('🔇 شما فقط با اجازه معلم می‌توانید صحبت کنید!', 'warning');
+            return;
+        }
+        
+        if (localStream) {
+            const audioTrack = localStream.getAudioTracks()[0];
+            if (audioTrack) {
+                isMuted = !isMuted;
+                audioTrack.enabled = !isMuted;
+                
+                const btn = document.querySelector('.video-control-btn[title="میکروفن"]');
+                if (btn) {
+                    if (isMuted) {
+                        btn.classList.add('off');
+                        btn.textContent = '🔇';
+                    } else {
+                        btn.classList.remove('off');
+                        btn.textContent = '🎤';
+                    }
+                }
+                showNotification(isMuted ? '🔇 میکروفن قطع شد' : '🎤 میکروفن روشن شد', 'info');
+            }
+        }
+    }
+    
+    function addVideoElement(username, stream, isLocal = false) {
+        removeVideoElement(username);
+        
+        const videoPanel = document.getElementById('videoPanel');
+        document.getElementById('noVideoMessage').style.display = 'none';
+        
+        const container = document.createElement('div');
+        container.className = 'video-container';
+        container.id = `video-${username}`;
+        container.style.animation = 'fadeInUp 0.4s ease';
+        
+        const video = document.createElement('video');
+        video.srcObject = stream;
+        video.autoplay = true;
+        video.playsinline = true;
+        if (isLocal) video.muted = true;
+        
+        const label = document.createElement('div');
+        label.className = 'video-label';
+        label.textContent = (isLocal ? '⭐ ' : '') + username;
+        
+        if (isLocal) {
+            const controls = document.createElement('div');
+            controls.className = 'video-controls';
+            controls.innerHTML = `
+                <button class="video-control-btn" onclick="toggleWebcam()" title="دوربین">📹</button>
+                <button class="video-control-btn" onclick="toggleMic()" title="میکروفن">${currentRole === 'student' ? '🔇' : '🎤'}</button>
+            `;
+            container.appendChild(controls);
+        }
+        
+        container.appendChild(video);
+        container.appendChild(label);
+        videoPanel.appendChild(container);
+        
+        return video;
+    }
+    
+    function removeVideoElement(username) {
+        const el = document.getElementById(`video-${username}`);
+        if (el) {
+            el.style.animation = 'fadeInUp 0.3s ease reverse';
+            setTimeout(() => el.remove(), 300);
+        }
+    }
+    
+    // ============ WebRTC ============
+    async function createPeerConnection(targetUser) {
+        if (peerConnections[targetUser]) return peerConnections[targetUser];
+        
+        console.log('🔗 PC with:', targetUser);
+        
+        const pc = new RTCPeerConnection({
+            iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' },
+                { urls: 'stun:stun1.l.google.com:19302' },
+                { urls: 'stun:stun2.l.google.com:19302' }
+            ]
+        });
+        
+        peerConnections[targetUser] = pc;
+        
+        if (localStream) {
+            localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
+        }
+        
+        pc.ontrack = (event) => {
+            console.log('📥 Remote track from:', targetUser);
+            if (event.streams[0]) {
+                addVideoElement(targetUser, event.streams[0]);
+            }
+        };
+        
+        pc.onicecandidate = (event) => {
+            if (event.candidate && ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'webrtc_ice_candidate',
+                    target: targetUser,
+                    candidate: event.candidate
+                }));
+            }
+        };
+        
+        pc.onconnectionstatechange = () => {
+            console.log(`📡 ${targetUser}:`, pc.connectionState);
+            if (pc.connectionState === 'failed' || pc.connectionState === 'disconnected') {
+                removeVideoElement(targetUser);
+            }
+        };
+        
+        if (currentRole === 'student' || (currentRole === 'teacher' && targetUser !== currentUser)) {
+            try {
+                const offer = await pc.createOffer();
+                await pc.setLocalDescription(offer);
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({
+                        type: 'webrtc_offer',
+                        target: targetUser,
+                        sdp: pc.localDescription
+                    }));
+                }
+            } catch (err) {
+                console.error('❌ Offer error:', err);
+            }
+        }
+        
+        return pc;
+    }
+    
+    async function handleOffer(data) {
+        const sender = data.sender || data.from;
+        console.log('📨 Offer from:', sender);
+        
+        if (peerConnections[sender]) peerConnections[sender].close();
+        
+        const pc = new RTCPeerConnection({
+            iceServers: [
+                { urls: 'stun:stun.l.google.com:19302' },
+                { urls: 'stun:stun1.l.google.com:19302' }
+            ]
+        });
+        
+        peerConnections[sender] = pc;
+        
+        if (localStream) {
+            localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
+        }
+        
+        pc.ontrack = (event) => {
+            console.log('📥 Remote track from:', sender);
+            if (event.streams[0]) addVideoElement(sender, event.streams[0]);
+        };
+        
+        pc.onicecandidate = (event) => {
+            if (event.candidate && ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'webrtc_ice_candidate',
+                    target: sender,
+                    candidate: event.candidate
+                }));
+            }
+        };
+        
+        try {
+            await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
+            const answer = await pc.createAnswer();
+            await pc.setLocalDescription(answer);
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'webrtc_answer',
+                    target: sender,
+                    sdp: pc.localDescription
+                }));
+            }
+        } catch (err) {
+            console.error('❌ Answer error:', err);
+        }
+    }
+    
+    async function handleAnswer(data) {
+        const sender = data.sender || data.from;
+        const pc = peerConnections[sender];
+        if (pc) {
+            try { await pc.setRemoteDescription(new RTCSessionDescription(data.sdp)); } 
+            catch (err) { console.error('❌ Set remote error:', err); }
+        }
+    }
+    
+    async function handleIceCandidate(data) {
+        const sender = data.sender || data.from;
+        const pc = peerConnections[sender];
+        if (pc && data.candidate) {
+            try { await pc.addIceCandidate(new RTCIceCandidate(data.candidate)); } 
+            catch (err) { console.error('❌ ICE error:', err); }
+        }
+    }
+    
+    function closePeerConnection(username) {
+        if (peerConnections[username]) {
+            peerConnections[username].close();
+            delete peerConnections[username];
+        }
+        if (screenPeerConnections[username]) {
+            screenPeerConnections[username].close();
+            delete screenPeerConnections[username];
+        }
+    }
+    
+    // ============ اشتراک صفحه ============
+    async function toggleScreenShare() {
+        if (currentRole !== 'teacher') {
+            showNotification('فقط معلم می‌تواند صفحه را به اشتراک بگذارد!', 'warning');
+            return;
+        }
+        
+        const btn = document.getElementById('screenShareBtn');
+        
+        if (screenStream) {
+            stopScreenShare();
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({type: 'screen_share_stopped'}));
+            }
+        } else {
+            try {
+                screenStream = await navigator.mediaDevices.getDisplayMedia({
+                    video: { frameRate: { ideal: 10 }, width: { ideal: 1280 } },
+                    audio: false
+                });
+                
+                screenStream.getVideoTracks()[0].onended = () => {
+                    stopScreenShare();
+                    if (ws && ws.readyState === WebSocket.OPEN) {
+                        ws.send(JSON.stringify({type: 'screen_share_stopped'}));
+                    }
+                };
+                
+                addScreenShareVideo(currentUser, screenStream);
+                btn.classList.add('active-glow');
+                btn.innerHTML = '⏹️ توقف اشتراک';
+                
+                const students = getStudentsList();
+                for (let name of Object.keys(students)) {
+                    await createScreenPeerConnection(name);
+                }
+                
+                if (ws && ws.readyState === WebSocket.OPEN) {
+                    ws.send(JSON.stringify({type: 'screen_share_started'}));
+                }
+                showNotification('📺 اشتراک صفحه شروع شد', 'success');
+                
+            } catch (err) {
+                console.log('⚠️ Screen share:', err.message);
+                showNotification('اشتراک صفحه لغو شد', 'warning');
+            }
+        }
+    }
+    
+    function stopScreenShare() {
+        if (screenStream) {
+            screenStream.getTracks().forEach(track => track.stop());
+            screenStream = null;
+        }
+        Object.keys(screenPeerConnections).forEach(key => {
+            if (screenPeerConnections[key]) {
+                screenPeerConnections[key].close();
+                delete screenPeerConnections[key];
+            }
+        });
+        document.getElementById('screenShareBtn').classList.remove('active-glow');
+        document.getElementById('screenShareBtn').innerHTML = '📺 اشتراک صفحه';
+        removeScreenShareVideo();
+    }
+    
+    function getStudentsList() {
+        const students = {};
+        document.querySelectorAll('.user-item').forEach(item => {
+            const nameSpan = item.querySelector('.user-info span');
+            if (nameSpan && !nameSpan.textContent.includes('(معلم)')) {
+                const name = nameSpan.textContent.replace(/[🎓👨‍🏫✋🔇📷]/g, '').replace('(معلم)', '').trim();
+                if (name && name !== currentUser) students[name] = { name };
+            }
+        });
+        return students;
+    }
+    
+    async function createScreenPeerConnection(targetUser) {
+        if (!screenStream) return;
+        if (screenPeerConnections[targetUser]) screenPeerConnections[targetUser].close();
+        
+        const pc = new RTCPeerConnection({
+            iceServers: [{ urls: 'stun:stun.l.google.com:19302' }, { urls: 'stun:stun1.l.google.com:19302' }]
+        });
+        
+        screenPeerConnections[targetUser] = pc;
+        screenStream.getTracks().forEach(track => pc.addTrack(track, screenStream));
+        
+        pc.onicecandidate = (event) => {
+            if (event.candidate && ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'screen_share_ice',
+                    target: targetUser,
+                    candidate: event.candidate,
+                    sender: currentUser
+                }));
+            }
+        };
+        
+        try {
+            const offer = await pc.createOffer();
+            await pc.setLocalDescription(offer);
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'screen_share_offer',
+                    target: targetUser,
+                    sdp: pc.localDescription,
+                    sender: currentUser
+                }));
+            }
+        } catch (err) {
+            console.error('❌ Screen offer error:', err);
+        }
+    }
+    
+    async function handleScreenOffer(data) {
+        const sender = data.sender;
+        if (screenPeerConnections[sender]) screenPeerConnections[sender].close();
+        
+        const pc = new RTCPeerConnection({
+            iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+        });
+        
+        screenPeerConnections[sender] = pc;
+        
+        pc.ontrack = (event) => {
+            if (event.streams[0]) addScreenShareVideo(sender, event.streams[0]);
+        };
+        
+        pc.onicecandidate = (event) => {
+            if (event.candidate && ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'screen_share_ice',
+                    target: sender,
+                    candidate: event.candidate,
+                    sender: currentUser
+                }));
+            }
+        };
+        
+        try {
+            await pc.setRemoteDescription(new RTCSessionDescription(data.sdp));
+            const answer = await pc.createAnswer();
+            await pc.setLocalDescription(answer);
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({
+                    type: 'screen_share_answer',
+                    target: sender,
+                    sdp: pc.localDescription,
+                    sender: currentUser
+                }));
+            }
+        } catch (err) {
+            console.error('❌ Screen answer error:', err);
+        }
+    }
+    
+    function addScreenShareVideo(username, stream) {
+        removeScreenShareVideo();
+        const videoPanel = document.getElementById('videoPanel');
+        document.getElementById('noVideoMessage').style.display = 'none';
+        
+        const container = document.createElement('div');
+        container.className = 'video-container screen-share';
+        container.id = `screen-${username}`;
+        container.style.animation = 'fadeInDown 0.5s ease';
+        
+        const video = document.createElement('video');
+        video.srcObject = stream;
+        video.autoplay = true;
+        video.playsinline = true;
+        
+        const label = document.createElement('div');
+        label.className = 'video-label';
+        label.textContent = '📺 اشتراک صفحه ' + username;
+        label.style.background = 'rgba(255,107,107,0.8)';
+        
+        container.appendChild(video);
+        container.appendChild(label);
+        videoPanel.insertBefore(container, videoPanel.firstChild);
+        videoPanel.scrollTop = 0;
+    }
+    
+    function removeScreenShareVideo() {
+        document.querySelectorAll('[id^="screen-"]').forEach(v => {
+            v.style.animation = 'fadeInUp 0.3s ease reverse';
+            setTimeout(() => v.remove(), 300);
+        });
+    }
+    
+    // ============ بالا بردن دست ============
+    function raiseHand() {
+        if (currentRole !== 'student') return;
+        
+        handRaised = !handRaised;
+        const btn = document.getElementById('raiseHandBtn');
+        
+        if (handRaised) {
+            btn.innerHTML = '✋ دست پایین';
+            btn.classList.add('active-glow');
+            btn.style.background = 'var(--warning)';
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({type: 'raise_hand'}));
+            }
+            showNotification('✋ دست شما بالا رفت - منتظر اجازه معلم باشید', 'info');
+        } else {
+            btn.innerHTML = '✋ بالا بردن دست';
+            btn.classList.remove('active-glow');
+            btn.style.background = '#a855f7';
+            if (ws && ws.readyState === WebSocket.OPEN) {
+                ws.send(JSON.stringify({type: 'lower_hand'}));
+            }
+        }
+    }
+    
+    function allowSpeak(studentName) {
+        if (currentRole !== 'teacher') return;
+        if (!ws || ws.readyState !== WebSocket.OPEN) return;
+        
+        ws.send(JSON.stringify({
+            type: 'allow_speak',
+            student_name: studentName,
+            allow: true
+        }));
+        showNotification(`🔊 به ${studentName} اجازه صحبت داده شد`, 'success');
+    }
+    
+    function muteStudent(studentName) {
+        if (currentRole !== 'teacher') return;
+        if (!ws || ws.readyState !== WebSocket.OPEN) return;
+        
+        ws.send(JSON.stringify({
+            type: 'allow_speak',
+            student_name: studentName,
+            allow: false
+        }));
+        showNotification(`🔇 ${studentName} بی‌صدا شد`, 'warning');
+    }
+    
+    function muteAllStudents() {
+        if (currentRole !== 'teacher') return;
+        if (!ws || ws.readyState !== WebSocket.OPEN) return;
+        
+        ws.send(JSON.stringify({type: 'mute_all'}));
+        showNotification('🔇 همه دانشجوها بی‌صدا شدند', 'warning');
+    }
+    
+    // ============ چت ============
+    function sendChat() {
+        const input = document.getElementById('chatInput');
+        const text = input.value.trim();
+        if (!text) return;
+        if (!ws || ws.readyState !== WebSocket.OPEN) {
+            showNotification('⚠️ اتصال برقرار نیست', 'warning');
+            return;
+        }
+        ws.send(JSON.stringify({ type: 'chat', text: text }));
+        input.value = '';
+        input.focus();
+    }
+    
+    function addChatMessage(sender, text, role) {
+        const chatDiv = document.getElementById('chatMessages');
+        const msg = document.createElement('div');
+        
+        if (role === 'system') {
+            msg.className = 'chat-message system-message';
+            msg.textContent = text;
+        } else {
+            msg.className = 'chat-message';
+            const roleEmoji = role === 'teacher' ? '👨‍🏫' : '🎓';
+            const roleName = role === 'teacher' ? 'معلم' : 'دانشجو';
+            msg.innerHTML = `<span class="sender">${roleEmoji} ${sender}</span> <span class="role-badge">${roleName}</span><br>${text}`;
+        }
+        
+        chatDiv.appendChild(msg);
+        chatDiv.scrollTop = chatDiv.scrollHeight;
+    }
+    
+    // ============ مدیریت کاربران ============
+    function updateUsersList(users) {
+        const container = document.getElementById('usersContainer');
+        container.innerHTML = '';
+        
+        if (!users || users.length === 0) {
+            container.innerHTML = '<div style="color:#aaa;font-size:12px;text-align:center;">کاربری آنلاین نیست</div>';
+            return;
+        }
+        
+        users.forEach(user => {
+            const div = document.createElement('div');
+            div.className = 'user-item';
+            
+            let icons = user.role === 'teacher' ? '👨‍🏫 ' : '🎓 ';
+            if (user.hand_raised) icons += '<span class="hand-icon">✋</span> ';
+            if (user.muted && user.role === 'student') icons += '<span class="muted-icon">🔇</span> ';
+            if (user.video_off) icons += '<span style="font-size:12px;">📷</span> ';
+            
+            div.innerHTML = `
+                <div class="user-info">
+                    <span>${icons}${user.name} ${user.role === 'teacher' ? '(معلم)' : ''}</span>
+                </div>
+                <div class="user-buttons">
+                    ${currentRole === 'teacher' && user.role === 'student' && user.hand_raised ? 
+                      `<button class="mini-btn mini-btn-allow" onclick="allowSpeak('${user.name}')" title="اجازه صحبت">🔊</button>` : ''}
+                    ${currentRole === 'teacher' && user.role === 'student' ? 
+                      `<button class="mini-btn mini-btn-mute" onclick="muteStudent('${user.name}')" title="قطع صدا">🔇</button>` : ''}
+                    ${currentRole === 'teacher' && user.role === 'student' ? 
+                      `<button class="mini-btn mini-btn-kick" onclick="kickStudent('${user.name}')" title="اخراج">🚫</button>` : ''}
+                </div>
+            `;
+            container.appendChild(div);
+        });
+    }
+    
+    function kickStudent(name) {
+        if (currentRole !== 'teacher') return;
+        if (!ws || ws.readyState !== WebSocket.OPEN) return;
+        if (confirm(`آیا از اخراج "${name}" اطمینان دارید؟`)) {
+            ws.send(JSON.stringify({ type: 'kick_student', student_name: name }));
+            showNotification(`${name} از کلاس اخراج شد`, 'error');
+        }
+    }
+    
+    // ============ WebSocket ============
+    function connectWebSocket(roomCode, role, username) {
+        if (reconnectTimeout) { clearTimeout(reconnectTimeout); reconnectTimeout = null; }
+        if (ws) { ws.onclose = null; ws.onerror = null; ws.onmessage = null; ws.close(); ws = null; }
+        
+        Object.keys(peerConnections).forEach(key => closePeerConnection(key));
+        peerConnections = {};
+        Object.keys(screenPeerConnections).forEach(key => {
+            if (screenPeerConnections[key]) screenPeerConnections[key].close();
+        });
+        screenPeerConnections = {};
+        
+        ws = new WebSocket(`ws://localhost:8000/ws/${roomCode}/${role}/${username}`);
+        
+        ws.onopen = () => {
+            console.log('✅ WS connected');
+            showNotification('✅ اتصال برقرار شد', 'success', 2000);
+        };
+        
+        ws.onmessage = async (event) => {
+            try {
+                const data = JSON.parse(event.data);
+                
+                switch(data.type) {
+                    case 'init_data':
+                        if (ctx && data.whiteboard_history) {
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            window._whiteboardHistory = data.whiteboard_history;
+                            data.whiteboard_history.forEach(d => applyRemoteDraw(d));
+                        }
+                        if (data.chat_history) data.chat_history.forEach(msg => addChatMessage(msg.sender, msg.text, msg.role));
+                        updateUsersList(data.users);
+                        if (data.screen_sharing) showNotification(`📺 ${data.screen_sharer} در حال اشتراک صفحه است`, 'info', 3000);
+                        if (currentRole === 'student') setTimeout(() => createPeerConnection('teacher'), 800);
+                        break;
+                        
+                    case 'user_joined':
+                        addChatMessage('سیستم', `${data.username} وارد کلاس شد`, 'system');
+                        updateUsersList(data.users);
+                        if (currentRole === 'teacher' && data.role === 'student') setTimeout(() => createPeerConnection(data.username), 800);
+                        break;
+                        
+                    case 'user_left':
+                        addChatMessage('سیستم', `${data.username} از کلاس خارج شد`, 'system');
+                        updateUsersList(data.users);
+                        closePeerConnection(data.username);
+                        removeVideoElement(data.username);
+                        break;
+                        
+                    case 'chat':
+                        addChatMessage(data.sender, data.text, data.role);
+                        break;
+                        
+                    case 'hand_raised':
+                        updateUsersList(data.users);
+                        showNotification(`✋ ${data.username} دست خود را بالا برد`, 'warning', 3000);
+                        break;
+                        
+                    case 'hand_lowered':
+                        updateUsersList(data.users);
+                        break;
+                        
+                    case 'speak_permission':
+                        if (data.allowed) {
+                            showNotification('🔊 معلم به شما اجازه صحبت داد!', 'success', 5000);
+                            if (localStream) {
+                                const audioTrack = localStream.getAudioTracks()[0];
+                                if (audioTrack) audioTrack.enabled = true;
+                            }
+                            isMuted = false;
+                            // آپدیت دکمه میکروفن
+                            const micBtn = document.querySelector('.video-control-btn[title="میکروفن"]');
+                            if (micBtn) { micBtn.classList.remove('off'); micBtn.textContent = '🎤'; }
+                        } else {
+                            showNotification('🔇 صدای شما توسط معلم قطع شد', 'warning');
+                            if (localStream) {
+                                const audioTrack = localStream.getAudioTracks()[0];
+                                if (audioTrack) audioTrack.enabled = false;
+                            }
+                            isMuted = true;
+                            const micBtn = document.querySelector('.video-control-btn[title="میکروفن"]');
+                            if (micBtn) { micBtn.classList.add('off'); micBtn.textContent = '🔇'; }
+                        }
+                        break;
+                        
+                    case 'all_muted':
+                        updateUsersList(data.users);
+                        break;
+                        
+                    case 'screen_share_started':
+                        showNotification('📺 معلم صفحه خود را به اشتراک گذاشت', 'info', 3000);
+                        break;
+                        
+                    case 'screen_share_stopped':
+                        showNotification('📺 اشتراک صفحه معلم پایان یافت', 'info');
+                        removeScreenShareVideo();
+                        break;
+                        
+                    case 'screen_share_offer':
+                        await handleScreenOffer(data);
+                        break;
+                        
+                    case 'screen_share_answer':
+                        const spc = screenPeerConnections[data.sender];
+                        if (spc) { try { await spc.setRemoteDescription(new RTCSessionDescription(data.sdp)); } catch(err) {} }
+                        break;
+                        
+                    case 'screen_share_ice':
+                        const sic = screenPeerConnections[data.sender];
+                        if (sic && data.candidate) { try { await sic.addIceCandidate(new RTCIceCandidate(data.candidate)); } catch(err) {} }
+                        break;
+                        
+                    case 'webrtc_offer': await handleOffer(data); break;
+                    case 'webrtc_answer': await handleAnswer(data); break;
+                    case 'webrtc_ice_candidate': await handleIceCandidate(data); break;
+                    case 'whiteboard_draw': applyRemoteDraw(data); break;
+                    
+                    case 'whiteboard_clear':
+                        if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        showNotification('🗑️ تخته پاک شد', 'info');
+                        break;
+                        
+                    case 'room_closed':
+                        showNotification(data.message, 'error', 5000);
+                        setTimeout(() => leaveClassroom(), 2000);
+                        break;
+                        
+                    case 'kicked':
+                        showNotification(data.message, 'error', 5000);
+                        setTimeout(() => leaveClassroom(), 1500);
+                        break;
+                        
+                    case 'error':
+                        showNotification(data.message, 'error', 4000);
+                        break;
+                }
+            } catch (err) {
+                console.error('❌ Message error:', err);
+            }
+        };
+        
+        ws.onclose = (event) => {
+            console.log('🔴 WS closed:', event.code);
+            showNotification('⚠️ اتصال قطع شد - تلاش مجدد...', 'warning', 4000);
+            if (currentRoom && currentUser && currentRole) {
+                reconnectTimeout = setTimeout(() => connectWebSocket(currentRoom, currentRole, currentUser), 2000);
+            }
+        };
+        
+        ws.onerror = (err) => { console.error('❌ WS error:', err); };
+    }
+    
+    // ============ ورود و خروج ============
+    async function createRoom() {
+        const name = document.getElementById('teacherName').value.trim();
+        if (!name) {
+            showNotification('لطفاً نام خود را وارد کنید!', 'warning');
+            document.getElementById('teacherName').style.animation = 'shake 0.5s ease';
+            setTimeout(() => document.getElementById('teacherName').style.animation = '', 500);
+            return;
+        }
+        
+        try {
+            const response = await fetch('/create-room', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                body: `teacher_name=${encodeURIComponent(name)}`
+            });
+            const data = await response.json();
+            document.getElementById('generatedCode').textContent = data.room_code;
+            document.getElementById('roomCodeDisplay').style.display = 'block';
+            currentRoom = data.room_code;
+            currentUser = name;
+            currentRole = 'teacher';
+            showNotification('✅ کلاس با موفقیت ساخته شد!', 'success');
+        } catch (err) {
+            showNotification('❌ خطا در ساخت کلاس', 'error');
+        }
+    }
+    
+    function joinRoom() {
+        const name = document.getElementById('studentName').value.trim();
+        const code = document.getElementById('roomCodeInput').value.trim();
+        if (!name) { showNotification('لطفاً نام خود را وارد کنید!', 'warning'); return; }
+        if (!code) { showNotification('لطفاً کد کلاس را وارد کنید!', 'warning'); return; }
+        currentRoom = code;
+        currentUser = name;
+        currentRole = 'student';
+        enterClassroom();
+    }
+    
+    async function enterClassroom() {
+        if (!currentRoom || !currentUser) return;
+        
+        document.getElementById('loginPage').style.display = 'none';
+        document.getElementById('classroomPage').style.display = 'flex';
+        document.getElementById('currentRoomCode').textContent = currentRoom;
+        document.getElementById('currentUserName').textContent = currentUser;
+        document.getElementById('currentUserRole').textContent = currentRole === 'teacher' ? '(👨‍🏫 معلم)' : '(🎓 دانشجو)';
+        
+        const toolbar = document.getElementById('toolbar');
+        const screenShareBtn = document.getElementById('screenShareBtn');
+        const raiseHandBtn = document.getElementById('raiseHandBtn');
+        const muteAllBtn = document.getElementById('muteAllBtn');
+        
+        if (currentRole === 'teacher') {
+            toolbar.style.display = 'flex';
+            screenShareBtn.style.display = 'inline-flex';
+            raiseHandBtn.style.display = 'none';
+            muteAllBtn.style.display = 'inline-flex';
+        } else {
+            toolbar.style.display = 'none';
+            screenShareBtn.style.display = 'none';
+            raiseHandBtn.style.display = 'inline-flex';
+            muteAllBtn.style.display = 'none';
+            isMuted = true;
+        }
+        
+        document.getElementById('chatMessages').innerHTML = '';
+        document.getElementById('videoPanel').innerHTML = '<div class="no-video" id="noVideoMessage"><p>📹</p><p>در انتظار اتصال ویدیو...</p></div>';
+        
+        initCanvas();
+        connectWebSocket(currentRoom, currentRole, currentUser);
+        await startLocalVideo();
+    }
+    
+    function leaveClassroom() {
+        if (reconnectTimeout) { clearTimeout(reconnectTimeout); reconnectTimeout = null; }
+        stopScreenShare();
+        Object.keys(peerConnections).forEach(key => closePeerConnection(key));
+        peerConnections = {};
+        Object.keys(screenPeerConnections).forEach(key => { if (screenPeerConnections[key]) screenPeerConnections[key].close(); });
+        screenPeerConnections = {};
+        if (localStream) { localStream.getTracks().forEach(track => track.stop()); localStream = null; }
+        if (ws) { ws.onclose = null; ws.close(); ws = null; }
+        
+        document.getElementById('classroomPage').style.display = 'none';
+        document.getElementById('loginPage').style.display = 'flex';
+        document.getElementById('roomCodeDisplay').style.display = 'none';
+        document.getElementById('videoPanel').innerHTML = '<div class="no-video"><p>📹</p><p>در انتظار اتصال ویدیو...</p></div>';
+        document.getElementById('chatMessages').innerHTML = '';
+        document.getElementById('usersContainer').innerHTML = '<div style="color:#aaa;font-size:12px;text-align:center;">در حال بارگذاری...</div>';
+        document.getElementById('screenShareBtn').classList.remove('active-glow');
+        document.getElementById('screenShareBtn').innerHTML = '📺 اشتراک صفحه';
+        document.getElementById('raiseHandBtn').classList.remove('active-glow');
+        document.getElementById('raiseHandBtn').innerHTML = '✋ بالا بردن دست';
+        document.getElementById('raiseHandBtn').style.background = '#a855f7';
+        
+        currentRoom = null; currentUser = null; currentRole = null;
+        canvas = null; ctx = null;
+        window._whiteboardHistory = null;
+        handRaised = false; isMuted = false; isVideoOff = false;
+    }
+    
+    function switchTab(tab) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        if (tab === 'create') {
+            document.getElementById('createForm').style.display = 'block';
+            document.getElementById('joinForm').style.display = 'none';
+            document.querySelector('.tab-btn:first-child').classList.add('active');
+        } else {
+            document.getElementById('createForm').style.display = 'none';
+            document.getElementById('joinForm').style.display = 'block';
+            document.querySelector('.tab-btn:last-child').classList.add('active');
+        }
+    }
+</script>
+</body>
+</html>
